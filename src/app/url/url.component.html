@@ -1,0 +1,26 @@
+<body>
+    <mat-card class="card" style="width:300px;height:250px;">
+        <mat-card-header>
+            <mat-card-title>URLNicknamer</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field appearance="outline" style="width:245px;height: 60px;padding-top:15px">
+                <mat-label>Enter the URL</mat-label>
+                <input matInput [(ngModel)]="url" [formControl]="urlerr" required>
+                <mat-error *ngIf="urlerr.invalid">{{getErrorMessageForURL()}}</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="width:245px;height: 60px;padding-top:15px">
+                <mat-label>Enter the nickname</mat-label>
+                <input matInput [(ngModel)]="nickname" [formControl]="nameerr" required>
+                <mat-error *ngIf="nameerr.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button [disabled]="(urlerr.valid==true && nameerr.valid==true)?false:true" (click)="onClick()">Get</button>
+        </mat-card-actions>
+    </mat-card>
+    <div>
+        <p style="margin-left:20px;">Your URL_Nickname : <a href="{{url}}">{{output}}</a></p>
+        <button [cdkCopyToClipboard]="output">Copy</button>
+    </div>
+</body>

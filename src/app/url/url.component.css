@@ -1,0 +1,16 @@
+body{
+    display : flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+.card form-field, mat-card-actions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+div{
+    margin-left: 30px;;
+}
+button{
+    margin-left: 20px;;
+}
