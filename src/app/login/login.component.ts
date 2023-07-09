@@ -5,11 +5,17 @@ import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar'
 import { env } from '../../environments/environment'
 
+interface resp{
+  result : string
+}
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
+
 export class LoginComponent{
   username : string = '';
   pass : string ='';
@@ -44,10 +50,9 @@ export class LoginComponent{
       username : this.username,
       password : this.pass
     }
-    return this.http.post<any>(env.BACKEND_URL+"login",data).subscribe(response=>{
+    return this.http.post<resp>(env.BACKEND_URL+"login",data).subscribe(response=>{
       if(response['result'] == "True"){
         sessionStorage.setItem('username',this.username);
-        // this.res = response['result']
         this.sb.open("Login","Successful",{duration:5000})
         this.router.navigate(['/url'])
       }else{

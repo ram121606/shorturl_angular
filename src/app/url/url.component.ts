@@ -4,6 +4,11 @@ import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {env} from '../../environments/environment'
 
+interface resp{
+  host : string
+  exists : string
+}
+
 @Component({
   selector: 'app-url',
   templateUrl: './url.component.html',
@@ -37,7 +42,7 @@ export class UrlComponent {
       url : this.url,
       nickname : this.nickname
     }
-    return this.http.post<any>(env.BACKEND_URL+"url",data).subscribe(response=>{
+    return this.http.post<resp>(env.BACKEND_URL+"url",data).subscribe(response=>{
       this.output = response['host']
       this.exists = response['exists']
       if(this.exists == "True"){

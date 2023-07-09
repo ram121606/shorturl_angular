@@ -5,6 +5,10 @@ import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar'
 import {env} from '../../environments/environment'
 
+interface resp{
+  result : string
+}
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -44,7 +48,7 @@ export class SignupComponent implements OnInit{
       username : this.username,
       password : this.pass
     }
-    return this.http.post<any>(env.BACKEND_URL+"register",data).subscribe(response=>{
+    return this.http.post<resp>(env.BACKEND_URL+"register",data).subscribe(response=>{
       this.resp = response['result']
       if(this.resp == "True"){
         this.sb.open("Signup","Unsuccessful",{duration:5000})
