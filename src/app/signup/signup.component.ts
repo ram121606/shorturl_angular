@@ -51,7 +51,7 @@ export class SignupComponent implements OnInit{
     return this.http.post<resp>(env.BACKEND_URL+"register",data).subscribe(response=>{
       this.resp = response['result']
       if(this.resp == "True"){
-        this.sb.open("Signup","Unsuccessful",{duration:5000})
+        this.sb.open("Signup Unsuccessful","Username or password exists",{duration:5000})
       }else{
         this.sb.open("Signup","Successful",{duration:5000})
         this.router.navigate(['/'])

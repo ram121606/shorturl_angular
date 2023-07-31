@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar'
 import { env } from '../../environments/environment'
+import { Service1Service } from '../serice/service1.service';
 
 interface resp{
   result : string
@@ -24,12 +25,10 @@ export class LoginComponent{
   hide : boolean = true;
   
   
-  constructor(private http : HttpClient , private router : Router , private sb : MatSnackBar){}
+  constructor(private http : HttpClient , private router : Router , private sb : MatSnackBar , private serv : Service1Service){}
 
-  // ngOnInit(): void {
-  //   this.hide = true;  
-  // }
 
+  
   getErrorMessageForUsername(){
     if(this.user.hasError('required')){
       return "Usernamecannot be empty"
@@ -52,11 +51,11 @@ export class LoginComponent{
     }
     return this.http.post<resp>(env.BACKEND_URL+"login",data).subscribe(response=>{
       if(response['result'] == "True"){
-        sessionStorage.setItem('username',this.username);
+        this.serv.setData(this.username)
         this.sb.open("Login","Successful",{duration:5000})
         this.router.navigate(['/url'])
       }else{
-        this.sb.open("Login","Unsuccessfull",{duration:5000})
+        this.sb.open("Login Unsuccessfull","Username or password is invlaid",{duration:5000})
       }
     })
   }

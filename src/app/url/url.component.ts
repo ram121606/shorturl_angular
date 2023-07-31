@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component , OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {env} from '../../environments/environment'
+import { Service1Service } from '../serice/service1.service';
 
 interface resp{
   host : string
@@ -14,15 +15,20 @@ interface resp{
   templateUrl: './url.component.html',
   styleUrls: ['./url.component.css']
 })
-export class UrlComponent {
+export class UrlComponent implements OnInit{
   url : any;
   nickname : any;
   urlerr = new FormControl('',[Validators.required , Validators.pattern('^((https://)|(http://))([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')])
   nameerr = new FormControl('',[Validators.required])
   output : any;
   exists : any;
+  username : string = ''
+  details : any;
 
-  constructor(private http : HttpClient , private sb : MatSnackBar){}
+  ngOnInit(): void {
+    this.username = this.serv.getData()
+  }
+  constructor(private http : HttpClient , private sb : MatSnackBar , private serv : Service1Service){}
 
   getErrorMessageForURL(){
     if(this.urlerr.hasError('required')){
@@ -38,7 +44,7 @@ export class UrlComponent {
   }
   onClick(){
     const data = {
-      username : sessionStorage.getItem('username'),
+      username : this.username,
       url : this.url,
       nickname : this.nickname
     }
@@ -50,6 +56,11 @@ export class UrlComponent {
       }else{
         this.sb.open("Nickname","Successfull",{duration : 5000})
       }
+    })
+  }
+  getDetails(){
+    this.http.get<any>(env.BACKEND_URL+"details/"+this.username).subscribe(response=>{
+      this.details = response['result']
     })
   }
 }
