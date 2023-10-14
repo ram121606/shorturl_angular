@@ -16,7 +16,7 @@
             <mat-form-field appearance="outline" style="padding-top:20px;width:245px;height: 60px;">
                 <mat-label>Enter your password</mat-label>
                 <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="pass" [formControl]="password" required>
-                <mat-icon matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon matSuffix (click)="hide = !hide" >
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </mat-icon>
             <mat-error *ngIf="password.invalid">{{getErrorMessageForPass()}}</mat-error>
