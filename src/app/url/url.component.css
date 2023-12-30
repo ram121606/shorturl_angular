@@ -2,26 +2,17 @@ body{
     display : flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 100px;
-}
-.card form-field, mat-card-actions{
-    display: flex;
     justify-content: center;
-    align-items: center;
+    /* margin-top: 100px; */
+    background-color: rgb(34, 33, 33);
+    /* color: aliceblue; */
 }
-
 .url-box{
-    display: inline;
-    /* flex-direction: column; */
+    display:contents;
     align-items: start;
     width: 23%;
+    padding-top: 2%;
 }
-
-.card button{
-    margin: 0 5px;
-    width: fit-content;
-}
-
 .main{
     display: flex;
     flex-direction: row;
@@ -29,4 +20,26 @@ body{
 
 .box{
     margin : 0 50px;
+}
+mat-form-field{
+    margin: 8% 0 -5% 10%;
+}
+.card{
+    width: 300px;
+    height: 280px;
+    background-color: aliceblue;
+}
+mat-card-actions{
+    margin: -3% 0 20% 25%;
+    gap: 5%;
+}
+.card button{
+    width: 30%;
+    height: 70%;
+    color: aliceblue;
+    background-color:midnightblue
+}
+
+h2,.url-box{
+    color: aliceblue;
 }

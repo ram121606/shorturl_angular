@@ -1,6 +1,8 @@
 
 <body>
-    <mat-card class="card" style="width:300px">
+    <img src="../../assets/url-img (1).png">
+    <div>
+      <mat-card class="card">
         <mat-card-header>
             <mat-card-title-group>
               <mat-card-title>REGISTER</mat-card-title><br>
@@ -8,12 +10,12 @@
             </mat-card-title-group>
           </mat-card-header>
           <br><mat-card-content>
-            <mat-form-field appearance="outline" style="width:245px;height: 60px;padding-top:15px">
+            <mat-form-field appearance="outline">
                 <mat-label>Enter your username</mat-label>
                 <input matInput  [(ngModel)]="username" [formControl]="user" required >
                 <mat-error *ngIf="user.invalid">{{getErrorMessageForUsername()}}</mat-error>
             </mat-form-field>
-            <mat-form-field appearance="outline" style="padding-top:20px;width:245px;height: 60px;">
+            <mat-form-field appearance="outline">
                 <mat-label>Enter your password</mat-label>
                 <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="pass" [formControl]="password" required>
                 <mat-icon matSuffix (click)="hide = !hide">
@@ -25,6 +27,8 @@
           <mat-card-actions>
             <button mat-raised-button [disabled]="((user.valid==true) && (password.valid==true))? false:true" (click)="onClick()">Register</button>
           </mat-card-actions>
-          <h4 style="margin-left:30%">ALready a user? <a href="/" style="text-decoration:none">Login</a></h4>
-    </mat-card>
+          <h4>ALready a user? <a href="/">Login</a></h4>
+      </mat-card>
+    </div>
+    
 </body>

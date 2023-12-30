@@ -1,10 +1,10 @@
-import { Component,OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar'
 import { env } from '../../environments/environment'
-import { Service1Service } from '../serice/service1.service';
+import { Service1Service } from '../service/service1.service';
 
 interface resp{
   result : string

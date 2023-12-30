@@ -3,7 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {env} from '../../environments/environment'
-import { Service1Service } from '../serice/service1.service';
+import { Service1Service } from '../service/service1.service';
 
 interface resp{
   host : string

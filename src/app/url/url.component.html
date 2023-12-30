@@ -1,17 +1,18 @@
 <body>
+    <h2>Welcome {{username}}!!</h2>
     <div class="main">
         <div class="box">
-            <mat-card class="card" style="width:300px;height:250px;">
+            <mat-card class="card">
                 <mat-card-header>
                     <mat-card-title>URLNicknamer</mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
-                    <mat-form-field appearance="outline" style="width:245px;height: 60px;padding-top:15px">
+                    <mat-form-field appearance="outline" >
                         <mat-label>Enter the URL</mat-label>
                         <input matInput [(ngModel)]="url" [formControl]="urlerr" required>
                         <mat-error *ngIf="urlerr.invalid">{{getErrorMessageForURL()}}</mat-error>
                     </mat-form-field>
-                    <mat-form-field appearance="outline" style="width:245px;height: 60px;padding-top:15px">
+                    <mat-form-field appearance="outline">
                         <mat-label>Enter the nickname</mat-label>
                         <input matInput [(ngModel)]="nickname" [formControl]="nameerr" required>
                         <mat-error *ngIf="nameerr.invalid">{{getErrorMessage()}}</mat-error>
@@ -19,21 +20,20 @@
                 </mat-card-content>
                 <mat-card-actions>
                     <button mat-raised-button [disabled]="(urlerr.valid==true && nameerr.valid==true)?false:true" (click)="onClick()">Get</button>
-                    <button mat-raised-button (click) = "getDetails()">Show Already registered</button>
+                    <button mat-raised-button (click) = "getDetails()">History</button>
                 </mat-card-actions>
             </mat-card>
             <div class="url-box">
                 <div>
-                    <p>Your URL_Nickname : <a href="{{url}}">{{output}}</a></p>
+                    <p>Your URL : <a href="{{url}}">{{output}}</a></p>
                     <button [cdkCopyToClipboard]="output">Copy</button>
                 </div>
             </div>
         </div>
         <div>
-            Previous Nicknames:
-            <li *ngFor="let detail of details">
-                <a href="{{detail[1]}}">{{detail[0]}}</a>
-            </li>
+            <ul *ngFor="let detail of details">
+                <li><a href="{{detail[1]}}">{{detail[0]}}</a></li>
+            </ul>
         </div>
     </div>
 </body>

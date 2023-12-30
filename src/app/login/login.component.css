@@ -2,9 +2,34 @@ body{
     display : flex;
     justify-content: center;
     align-items: center;
+    gap: 4%;
+    
 }
-.card form-field, mat-card-actions{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+img{
+    margin-left: 0;
+    width: 75%;
+    height: 100%;
+}
+div{
+    margin-right: 5%;
+}
+.card{
+    background-color:aliceblue
+}
+button{
+    margin:3% 0 0 38%;
+    height: 30px;
+    width: 60px;
+    background-color: rgb(7, 7, 37);
+    color: aliceblue;
+}
+h4{
+    margin-left: 30%;
+}
+a{
+    text-decoration: none;
+}
+mat-form-field{
+    width: 90%;
+    margin: 0 0 0 5%;
 }
