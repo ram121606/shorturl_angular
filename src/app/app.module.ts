@@ -16,6 +16,7 @@ import { UrlComponent } from './url/url.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {ClipboardModule} from '@angular/cdk/clipboard';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -37,7 +38,7 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
     MatIconModule,
     HttpClientModule,
     MatSnackBarModule,
-    ClipboardModule
+    ClipboardModule,
 
   ],
   providers: [],

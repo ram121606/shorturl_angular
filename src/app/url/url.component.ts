@@ -7,7 +7,9 @@ import { Service1Service } from '../service/service1.service';
 
 interface resp{
   host : string
-  exists : string
+  exists : boolean
+  update : boolean
+  result : []
 }
 
 @Component({
@@ -20,10 +22,11 @@ export class UrlComponent implements OnInit{
   nickname : any;
   urlerr = new FormControl('',[Validators.required , Validators.pattern('^((https://)|(http://))([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')])
   nameerr = new FormControl('',[Validators.required])
-  output : any;
-  exists : any;
+  output : string = ''
+  exists : boolean = false
   username : string = ''
-  details : any;
+  details : any
+  update : boolean = false
 
   ngOnInit(): void {
     this.username = this.serv.getData()
@@ -38,20 +41,22 @@ export class UrlComponent implements OnInit{
   }
   getErrorMessage(){
     if(this.nameerr.hasError('required')){
-      return "Cannot br empty"
+      return "Cannot be empty"
     }
     return ""
   }
   onClick(){
     const data = {
       username : this.username,
-      url : this.url,
+      org_url : this.url,
       nickname : this.nickname
     }
     return this.http.post<resp>(env.BACKEND_URL+"url",data).subscribe(response=>{
       this.output = response['host']
       this.exists = response['exists']
-      if(this.exists == "True"){
+      this.update = response['update']
+
+      if(this.exists == true){
         this.sb.open("Nickname","Already exits",{duration : 5000})
       }else{
         this.sb.open("Nickname","Successfull",{duration : 5000})
@@ -59,7 +64,7 @@ export class UrlComponent implements OnInit{
     })
   }
   getDetails(){
-    this.http.get<any>(env.BACKEND_URL+"details/"+this.username).subscribe(response=>{
+    this.http.get<resp>(env.BACKEND_URL+this.username).subscribe(response=>{
       this.details = response['result']
     })
   }

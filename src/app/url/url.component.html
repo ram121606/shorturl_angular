@@ -25,15 +25,16 @@
             </mat-card>
             <div class="url-box">
                 <div>
-                    <p>Your URL : <a href="{{url}}">{{output}}</a></p>
+                    <p>Your URL : <a href="{{url}}" target="_blank">{{output}}</a></p>
                     <button [cdkCopyToClipboard]="output">Copy</button>
                 </div>
             </div>
         </div>
         <div>
             <ul *ngFor="let detail of details">
-                <li><a href="{{detail[1]}}">{{detail[0]}}</a></li>
+                <li><a href="{{detail[1]}}" target="_blank">{{detail[0]}}</a></li>
             </ul>
         </div>
+        
     </div>
 </body>

@@ -6,7 +6,7 @@ import {MatSnackBar} from '@angular/material/snack-bar'
 import {env} from '../../environments/environment'
 
 interface resp{
-  result : string
+  result : boolean
 }
 
 @Component({
@@ -20,7 +20,7 @@ export class SignupComponent implements OnInit{
   user = new FormControl('',[Validators.required])
   password = new FormControl('',[Validators.required,Validators.minLength(8)])
   hide : any;
-  resp : any;
+  resp : boolean = false;
 
   constructor(private http : HttpClient , private router : Router , private sb : MatSnackBar){}
 
@@ -50,7 +50,7 @@ export class SignupComponent implements OnInit{
     }
     return this.http.post<resp>(env.BACKEND_URL+"register",data).subscribe(response=>{
       this.resp = response['result']
-      if(this.resp == "True"){
+      if(this.resp == true){
         this.sb.open("Signup Unsuccessful","Username or password exists",{duration:5000})
       }else{
         this.sb.open("Signup","Successful",{duration:5000})

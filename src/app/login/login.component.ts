@@ -7,7 +7,7 @@ import { env } from '../../environments/environment'
 import { Service1Service } from '../service/service1.service';
 
 interface resp{
-  result : string
+  result : boolean
 }
 
 @Component({
@@ -44,17 +44,20 @@ export class LoginComponent{
     }
   }
   
-  onClick(){
+  async onClick(){
     const data = {
       username : this.username,
       password : this.pass
     }
     return this.http.post<resp>(env.BACKEND_URL+"login",data).subscribe(response=>{
-      if(response['result'] == "True"){
+      console.log(response)
+      if(response['result'] == true){
+        console.log("if block")
         this.serv.setData(this.username)
         this.sb.open("Login","Successful",{duration:5000})
         this.router.navigate(['/url'])
       }else{
+        console.log("else block")
         this.sb.open("Login Unsuccessfull","Username or password is invlaid",{duration:5000})
       }
     })
